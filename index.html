@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>banque. — Minecraft creatures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0920;--panel:rgba(255,255,255,.035);--panel-b:rgba(255,255,255,.07);--panel2:#241a44;--ink:#f7f3fb;--sub:#b3a4cc;--desc:#cdc4de;--line:rgba(255,255,255,.08);--acc:#f2b640;--acc2:#ffd27a;--accink:#2a1a00;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.aurora{position:fixed;inset:-20%;z-index:-1;pointer-events:none;filter:blur(80px);opacity:.55}
+.aurora i{position:absolute;width:42vw;height:42vw;border-radius:50%;will-change:transform}
+.aurora i:nth-child(1){background:#4b2a8a;left:5%;top:10%;animation:drift1 26s ease-in-out infinite alternate}
+.aurora i:nth-child(2){background:#1f3f7a;right:0;top:40%;animation:drift2 32s ease-in-out infinite alternate}
+.aurora i:nth-child(3){background:#6a2557;left:30%;bottom:-5%;width:34vw;height:34vw;animation:drift3 28s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(18vw,12vh) scale(1.15)}}@keyframes drift2{to{transform:translate(-20vw,-10vh) scale(.9)}}@keyframes drift3{to{transform:translate(10vw,-18vh) scale(1.2)}}
+nav{position:sticky;top:0;z-index:20;background:rgba(15,9,32,.55);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
+nav.scrolled{background:rgba(15,9,32,.82);border-color:var(--line)}
+nav .in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:22px;padding:12px 20px;transition:padding .4s var(--ease)}
+nav.scrolled .in{padding:8px 20px}
+.logo{font-weight:800;letter-spacing:-.02em;font-size:17px}
+.links{display:flex;gap:4px;font-size:13px;color:var(--sub);margin-left:auto}
+.links a{padding:6px 10px;border-radius:99px;transition:color .25s,background .25s}.links a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+.cartbtn{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:99px;padding:7px 12px;font:600 13px Inter,system-ui;color:var(--ink);cursor:pointer;transition:background .25s,transform .25s var(--ease)}
+.cartbtn:hover{background:rgba(255,255,255,.1)}
+.cartbtn b{background:var(--acc);color:var(--accink);border-radius:99px;min-width:20px;height:20px;display:inline-grid;place-items:center;font-size:11px;padding:0 6px;transition:transform .35s var(--ease)}
+.cartbtn.bump b{transform:scale(1.35)}
+@media(max-width:720px){.links{display:none}.cartbtn{margin-left:auto}}
+.hero{width:100%;max-width:1920px;margin:0 auto;display:block;position:relative;overflow:hidden}
+.hero img{width:100%;display:block;transform-origin:50% 30%;animation:heroin 1.6s var(--ease) both}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:14%;background:linear-gradient(transparent,var(--bg))}
+@keyframes heroin{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:none}}
+.strip{max-width:1120px;margin:-28px auto 0;position:relative;z-index:2;padding:0 20px}
+.strip .box{background:linear-gradient(180deg,rgba(40,28,78,.75),rgba(24,16,48,.75));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--panel-b);border-radius:22px;padding:24px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.strip h1{font-size:23px;letter-spacing:-.025em}
+.strip p{color:var(--sub);font-size:13px;margin-top:5px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.pill{font-size:11px;font-weight:600;color:#d9cdf0;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:99px;padding:4px 10px}
+.cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{border:0;border-radius:14px;padding:13px 20px;font:600 14px Inter,system-ui;cursor:pointer;white-space:nowrap;transition:transform .3s var(--ease),box-shadow .3s,background .3s,border-color .3s;display:inline-block}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0) scale(.98)}
+.btn.main{background:linear-gradient(180deg,#ffd27a,#f2b640);color:var(--accink);box-shadow:0 8px 30px rgba(242,182,64,.28),inset 0 1px 0 rgba(255,255,255,.5);position:relative;overflow:hidden}
+.btn.main:hover{box-shadow:0 12px 40px rgba(242,182,64,.42),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn.main:after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,70%{left:-60%}100%{left:130%}}
+.btn.ghost{background:rgba(255,255,255,.04);color:var(--ink);border:1px solid var(--panel-b)}.btn.ghost:hover{background:rgba(255,255,255,.08)}
+.old{text-decoration:line-through;opacity:.55;font-weight:500;margin-left:6px}
+section{max-width:1040px;margin:0 auto;padding:110px 20px 30px}
+h2{font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-.035em;text-align:center;background:linear-gradient(180deg,#fff,#c9b9ea);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--sub);text-align:center;max-width:480px;margin:14px auto 0;font-size:15px;line-height:1.55}
+.hint{color:#8a7cab;text-align:center;font-size:12px;margin-top:12px}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:50px}
+@media(max-width:900px){.plans{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;transition:transform .45s var(--ease),border-color .3s,background .3s,box-shadow .45s}
+.plan:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.055);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.plan h3{font-size:15px;margin:0}.plan .what{color:var(--sub);font-size:12px;margin-top:4px;min-height:32px}
+.plan .price{font-size:34px;font-weight:800;letter-spacing:-.04em;margin:16px 0 4px}
+.plan .price small{font-size:13px;font-weight:500;color:var(--sub);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:12px 0 18px;font-size:12.5px;color:var(--desc);line-height:1.9}
+.plan ul li:before{content:"✓  ";color:var(--acc);font-weight:700}
+.plan .btn{margin-top:auto;width:100%}
+.plan.best{background:linear-gradient(180deg,rgba(110,70,190,.45),rgba(40,26,80,.6));border-color:rgba(170,130,255,.45);position:relative;box-shadow:0 0 0 1px rgba(170,130,255,.15),0 30px 80px rgba(90,50,170,.35)}
+.plan.best:after{content:"Best value";position:absolute;top:-11px;right:16px;background:linear-gradient(180deg,#ffd27a,#f2b640);color:var(--accink);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:4px 9px;border-radius:99px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+@media(max-width:820px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+.card{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 14px 18px;overflow:hidden;transition:transform .5s var(--ease),border-color .35s,background .35s,box-shadow .5s}
+.card:before{content:"";position:absolute;left:50%;top:18px;width:150px;height:150px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,var(--glow,rgba(160,120,255,.35)),transparent);opacity:.55;transition:opacity .5s,transform .6s var(--ease);pointer-events:none}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.05);box-shadow:0 22px 50px rgba(0,0,0,.35)}
+.card:hover:before{opacity:.95;transform:translateX(-50%) scale(1.15)}
+h3{font-size:16px;font-weight:700;letter-spacing:-.01em;margin-top:14px}
+.sub{color:var(--sub);font-size:12px;margin-top:3px}
+.desc{color:var(--desc);font-size:12px;line-height:1.5;margin:10px auto 0;max-width:180px;flex:1}
+.buy{margin-top:14px;background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--panel-b);border-radius:99px;padding:7px 14px;font:600 12px Inter,system-ui;cursor:pointer;transition:all .3s var(--ease)}
+.buy:hover{border-color:var(--acc);color:var(--acc2);background:rgba(242,182,64,.08)}
+.buy.in{background:linear-gradient(180deg,#ffd27a,#f2b640);color:var(--accink);border-color:transparent;transform:scale(1.04)}
+.soon{display:inline-block;margin-top:14px;font-size:11px;font-weight:600;color:#d9b8ff;background:rgba(160,110,255,.14);border-radius:99px;padding:6px 11px}
+.critter{position:relative;display:flex;align-items:flex-end;justify-content:center;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;z-index:1}
+.critter img{position:relative;z-index:1;max-width:100%;max-height:100%;object-fit:contain;user-select:none;transition:opacity .5s}
+.c3d{position:absolute;inset:0;width:100%;height:100%;z-index:2;opacity:0;transition:opacity .6s}
+.is3d .c3d{opacity:1}.is3d img{opacity:0}
+.shadow{position:absolute;bottom:-4px;left:50%;width:56%;height:10px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent);border-radius:50%}
+.pet{height:130px;width:100%;max-width:180px;margin:0 auto}
+.baby{height:100px;width:160px;margin:0 auto}
+.adult{height:220px;width:100%;max-width:420px;margin:0 auto}
+.boss{height:320px;width:100%;max-width:280px;margin:0 auto}
+.drows{margin-top:44px;display:grid;gap:16px}
+.drow{position:relative;display:grid;grid-template-columns:1fr 60px 2fr;align-items:start;gap:8px;padding:30px 24px;background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:border-color .35s,background .35s}
+.drow:before{content:"";position:absolute;right:12%;top:10%;width:320px;height:240px;border-radius:50%;background:radial-gradient(closest-side,var(--glow,rgba(160,120,255,.3)),transparent);opacity:.5;pointer-events:none}
+.drow:hover{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.05)}
+.dyoung,.dadult{text-align:center;position:relative}.dadult .desc{max-width:360px}
+.arrow{color:#8e7fb5;font-size:24px;height:220px;display:flex;align-items:center;justify-content:center}
+.dstage{height:220px;display:flex;align-items:center;justify-content:center}
+@media(max-width:620px){.drow{grid-template-columns:1fr;gap:6px}.arrow{transform:rotate(90deg);height:40px}.dstage{height:auto}}
+.bosses{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:50px;text-align:center}
+@media(max-width:620px){.bosses{grid-template-columns:1fr}}
+.bosses>div{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px 18px 22px;overflow:hidden}
+.bosses>div:before{content:"";position:absolute;left:50%;top:30px;width:300px;height:300px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,var(--glow,rgba(160,120,255,.3)),transparent);opacity:.5;pointer-events:none}
+.bosses .desc{max-width:290px}
+.faq{max-width:720px;margin:44px auto 0}
+details{border-bottom:1px solid var(--line);padding:18px 4px}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;transition:color .25s}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--acc2)}
+summary:after{content:"+";color:var(--sub);transition:transform .35s var(--ease)}details[open] summary:after{transform:rotate(45deg)}
+details p{color:var(--desc);font-size:13.5px;line-height:1.65;margin-top:10px;animation:fadein .4s var(--ease)}
+@keyframes fadein{from{opacity:0;transform:translateY(-4px)}}
+.service{max-width:1000px;margin:80px auto 0;background:linear-gradient(120deg,rgba(242,182,64,.12),rgba(160,110,255,.12));border:1px solid var(--panel-b);border-radius:22px;padding:28px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.service h3{margin:0;font-size:19px}.service p{color:var(--desc);font-size:13.5px;margin-top:6px;max-width:560px;line-height:1.55}
+.service .btn{margin-left:auto}
+@media(max-width:1040px){.service{margin-left:20px;margin-right:20px}}
+footer{text-align:center;color:#9d90b8;font-size:12px;padding:70px 20px 100px;line-height:1.8}
+footer strong{color:var(--ink)}
+.drawer{position:fixed;right:16px;bottom:16px;z-index:30;width:330px;max-width:calc(100vw - 32px);background:rgba(30,20,60,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.12);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.55);padding:18px;transform:translateY(calc(100% + 40px)) scale(.96);opacity:0;transition:transform .55s var(--ease),opacity .4s}
+.drawer.open{transform:none;opacity:1}
+.drawer h4{font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.drawer ul{list-style:none;padding:0;margin:10px 0;max-height:180px;overflow:auto;font-size:12.5px;color:var(--desc)}
+.drawer li{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line);animation:fadein .35s var(--ease)}
+.drawer .tot{display:flex;justify-content:space-between;font-weight:800;margin:10px 0 4px;font-size:15px}
+.drawer .tip{font-size:11.5px;color:#8ff0b0;min-height:16px;margin-bottom:10px}
+.drawer .btn{width:100%}
+.x{background:none;border:0;color:var(--sub);cursor:pointer;font-size:16px;transition:color .2s}.x:hover{color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140px);background:#fff;color:#1a1030;font-size:13px;font-weight:600;padding:11px 18px;border-radius:99px;z-index:40;transition:transform .5s var(--ease);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.toast.show{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--i,0)*60ms)}
+.rv.on{opacity:1;transform:none}
+.card.rv.on{transition:opacity .9s var(--ease),transform .5s var(--ease),border-color .35s,background .35s,box-shadow .5s;transition-delay:calc(var(--i,0)*60ms),0s,0s,0s,0s}
+
+.hero2{max-width:1120px;margin:0 auto;padding:70px 24px 40px;min-height:calc(92vh - 60px);display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:24px}
+@media(max-width:860px){.hero2{grid-template-columns:1fr;padding-top:40px;min-height:0;text-align:center}.hcta,.stats{justify-content:center}}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;color:#d9cdf0;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:99px;padding:6px 12px;animation:up .9s var(--ease) both}
+.hero2 h1{font-size:clamp(40px,6.4vw,68px);line-height:1.02;letter-spacing:-.045em;font-weight:800;margin-top:18px;animation:up .9s .08s var(--ease) both}
+.hero2 h1 span{background:linear-gradient(90deg,#ffd27a,#f2b640 45%,#ff8fb1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hsub{color:var(--sub);font-size:16px;line-height:1.6;max-width:430px;margin-top:18px;animation:up .9s .16s var(--ease) both}
+@media(max-width:860px){.hsub{margin-left:auto;margin-right:auto}}
+.hcta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;animation:up .9s .24s var(--ease) both}
+.stats{display:flex;gap:28px;margin-top:34px;animation:up .9s .32s var(--ease) both}
+.stats b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em}.stats span{font-size:12px;color:var(--sub)}
+@keyframes up{from{opacity:0;transform:translateY(20px)}}
+.hstage{position:relative;height:460px;animation:fadein 1.4s .2s var(--ease) both}
+@media(max-width:860px){.hstage{height:360px}}
+.halo{position:absolute;left:50%;top:50%;width:440px;height:440px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(170,110,255,.45),rgba(242,182,64,.12) 60%,transparent);filter:blur(10px);animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.08);opacity:.8}}
+.hstage .critter{position:absolute}
+.herobig{left:4%;right:4%;top:6%;height:68%}
+.herosm1{left:6%;bottom:6%;width:30%;height:34%}
+.herosm2{right:6%;bottom:6%;width:30%;height:34%}
+.htap{position:absolute;left:0;right:0;bottom:-14px;text-align:center;font-size:12px;color:#8a7cab}
+
+.logo{display:flex;align-items:center;gap:10px}
+.mark{width:30px;height:30px;filter:drop-shadow(0 4px 10px rgba(242,182,64,.35));transition:transform .5s var(--ease)}
+.logo:hover .mark{transform:rotate(-8deg) scale(1.08)}
+.wm{font-size:18px;font-weight:800;letter-spacing:-.03em;color:var(--ink)!important;background:none!important;-webkit-text-fill-color:var(--ink);display:flex;align-items:baseline;gap:7px}
+.wm small{font-size:11px;font-weight:600;letter-spacing:.02em;color:var(--acc);-webkit-text-fill-color:var(--acc)}
+.flogo{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;color:var(--sub);font-size:13px}.flogo b{color:var(--ink);font-size:15px;letter-spacing:-.02em}.flogo .mark{width:22px;height:22px}
+.sel{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:50px}
+@media(max-width:900px){.sel{grid-template-columns:1fr 1fr}}
+.pick{height:190px;width:100%;max-width:240px;margin:6px auto 0}
+.feat{padding-top:18px}.feat:before{width:230px;height:230px;top:30px}
+.kind{align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--acc2);background:rgba(242,182,64,.1);border:1px solid rgba(242,182,64,.25);border-radius:99px;padding:3px 8px;position:relative;z-index:2}
+
+.lg{display:flex;align-items:center;gap:10px}
+.logo .lg{background:none}.wmB{background:none!important;-webkit-text-fill-color:var(--ink);font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--ink);display:flex;align-items:baseline;gap:8px}
+.wmB small{-webkit-text-fill-color:#7fe3d0;background:none!important;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7fe3d0}
+.mark{filter:drop-shadow(0 4px 10px rgba(150,100,255,.45))}
+.btn.main{background:linear-gradient(180deg,#d3b8ff,#9a6bff);color:#1a0b3a;box-shadow:0 8px 30px rgba(154,107,255,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+.cartbtn b,.buy.in{background:#b58cff;color:#1a0b3a}
+.seltitle{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);margin-bottom:12px;text-align:center}
+.hero2{min-height:0!important;padding-bottom:20px!important}
+.hpicks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mini{padding:14px 12px 14px}.mini .pick{height:128px;margin-top:2px}.mini h3{margin-top:8px;font-size:15px}.mini .buy{margin-top:10px}.mini.feat:before{width:170px;height:170px;top:16px}
+.heroB{max-width:1120px;margin:0 auto;padding:44px 24px 10px;text-align:center}
+.heroB h1{font-size:clamp(36px,5.6vw,62px);line-height:1.04;letter-spacing:-.045em;font-weight:800;margin-top:18px;animation:up .9s .08s var(--ease) both}
+.heroB h1 span{background:linear-gradient(90deg,#b58cff,#ff8fb1 55%,#7fe3d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.heroB .hsub{margin:16px auto 0;max-width:520px}.heroB .hcta{justify-content:center}
+.hrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:860px){.hrow{grid-template-columns:1fr 1fr}}
+.hrow .pick{height:150px}
+.switch{position:fixed;left:12px;bottom:12px;z-index:35;display:flex;align-items:center;gap:4px;background:rgba(30,20,60,.92);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:4px 5px 4px 12px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ff8fb1}
+.switch button{border:0;background:transparent;color:var(--sub);font:700 12px Inter,system-ui;width:30px;height:26px;border-radius:99px;cursor:pointer;transition:all .25s}
+.switch button.on{background:#fff;color:#1a1030}
+.wm3{font-family:Inter,system-ui,sans-serif;font-weight:800;font-size:21px;letter-spacing:-.045em;color:var(--ink)}.wm3 span{color:#9a6bff}.flogo .wm3{font-size:26px}
+.ordhelp{font-size:12px;color:var(--desc);margin:12px 0 6px;line-height:1.5}.ordhelp strong{color:var(--ink)}
+#ordertxt{width:100%;background:rgba(0,0,0,.3);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px;font:12px ui-monospace,Menlo,monospace;resize:none}
+code{font-family:ui-monospace,Menlo,monospace;color:var(--ink);font-size:.95em}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style></head><body><div class="aurora"><i></i><i></i><i></i></div>
+<nav><div class="in"><a class="logo" href="#top" aria-label="banque. home"><span class="wm3">banque<span>.</span></span></a>
+<div class="links"><a href="#pricing">Pricing</a><a href="#companions">Companions</a><a href="#dragons">Dragons</a><a href="#bosses">Bosses</a><a href="#faq">FAQ</a></div>
+<button class="cartbtn" id="cartbtn">Cart <b id="count">0</b></button></div></nav>
+<div id="top"></div>
+<header class="heroB">
+<p class="eyebrow">52 original creatures · Java + Bedrock</p>
+<h1>Pets, dragons and bosses.<br><span>Made from scratch.</span></h1>
+<p class="hsub">Modelled, textured and animated by hand. Drop them in <code>plugins/</code> and they're ready for your players.</p>
+<div class="hcta"><button class="btn main" data-bundle="all">Get everything · 90€ <span class="old">186€</span></button><a class="btn ghost" href="#companions">Browse creatures</a></div>
+<p class="seltitle" style="margin-top:34px">The selection</p>
+<div class="hrow"><article class="card feat"><span class="kind">Dragon</span><div class="critter pick fly" data-model="crepuscule" tabindex="0" role="button" aria-label="Make it react"><img src="assets/crepuscule.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Crépuscule</h3><p class="sub">the dusk dragon</p><button class="buy" data-p="8">Add · 8€</button></article><article class="card feat"><span class="kind">Boss</span><div class="critter pick idle" data-model="roi_meteore" tabindex="0" role="button" aria-label="Make it react"><img src="assets/roi.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Le Roi Météore</h3><p class="sub">the Meteor King</p><button class="buy" data-p="12">Add · 12€</button></article><article class="card feat"><span class="kind">Companion</span><div class="critter pick fly" data-model="nouille" tabindex="0" role="button" aria-label="Make it react"><img src="assets/nouille.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Nouille</h3><p class="sub">the noodle dragon</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card feat"><span class="kind">Companion</span><div class="critter pick idle" data-model="theo" tabindex="0" role="button" aria-label="Make it react"><img src="assets/theo.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Théo</h3><p class="sub">the teapot snail</p><button class="buy" data-p="3">Add · 3€</button></article></div>
+</header>
+<section id="pricing"><h2>Pick your pack.</h2><p class="lead">Buy one creature or the whole collection. Every pack includes Java and Bedrock files.</p>
+<div class="plans">
+<div class="plan"><h3>Companions</h3><p class="what">All 38 pets that follow the player</p><div class="price">45€ <small><s>114€</s></small></div><ul><li>38 animated pets</li><li>Idle, walk and click reaction</li><li>MCPets menu ready</li></ul><button class="btn ghost" data-bundle="companions">Add to cart</button></div>
+<div class="plan"><h3>Dragons</h3><p class="what">6 dragons, baby and adult forms</p><div class="price">35€ <small><s>48€</s></small></div><ul><li>12 models (6 babies + 6 adults)</li><li>Adults as tall as a player</li><li>Unlockable evolution</li></ul><button class="btn ghost" data-bundle="dragons">Add to cart</button></div>
+<div class="plan"><h3>Bosses</h3><p class="what">2 bosses with attacks and skills</p><div class="price">20€ <small><s>24€</s></small></div><ul><li>Bark Warden + Meteor King</li><li>4 attacks each</li><li>Spawn and death animations</li></ul><button class="btn ghost" data-bundle="bosses">Add to cart</button></div>
+<div class="plan best"><h3>Everything</h3><p class="what">The whole collection in one go</p><div class="price">90€ <small><s>186€</s></small></div><ul><li>All 52 creatures</li><li>Save 96€</li><li>Java + Bedrock files</li></ul><button class="btn main" data-bundle="all">Add to cart</button></div>
+</div>
+<p class="hint" style="margin-top:18px">Single creatures: companions 3€ · dragons 8€ · bosses 12€</p></section>
+
+<section id="companions"><h2>Companions.</h2>
+<p class="lead">Small pets that follow the player. Each one idles, walks and reacts when you click it.</p>
+<p class="hint">Tap one to see it react · hover to see it walk</p>
+<div class="grid"><article class="card"><div class="critter pet idle" data-model="braise" tabindex="0" role="button" aria-label="Make it react"><img src="assets/braise.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Braise</h3><p class="sub">the lantern fox</p><p class="desc">Carries a glowing pumpkin lantern on its tail. Sparks fly when you pet it.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="flocon" tabindex="0" role="button" aria-label="Make it react"><img src="assets/flocon.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Flocon</h3><p class="sub">the baby yeti</p><p class="desc">Always has a cold. It sneezes snowflakes.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet fly" data-model="myrtille" tabindex="0" role="button" aria-label="Make it react"><img src="assets/myrtille.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Myrtille</h3><p class="sub">the baby dragon</p><p class="desc">Hovers beside you and spits tiny flames.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="crouton" tabindex="0" role="button" aria-label="Make it react"><img src="assets/crouton.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Croûton</h3><p class="sub">the chestnut hedgehog</p><p class="desc">Curls up inside its chestnut husk when petted.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="glacon" tabindex="0" role="button" aria-label="Make it react"><img src="assets/glacon.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Glaçon</h3><p class="sub">the chilly penguin</p><p class="desc">Slides on its belly, woolly hat pulled down tight.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="nimbus" tabindex="0" role="button" aria-label="Make it react"><img src="assets/nimbus.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Nimbus</h3><p class="sub">the cloud sheep</p><p class="desc">When it sulks, it rains right underneath it.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet fly" data-model="nouille" tabindex="0" role="button" aria-label="Make it react"><img src="assets/nouille.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Nouille</h3><p class="sub">the noodle dragon</p><p class="desc">Ripples through the air and loops the loop.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="mochi" tabindex="0" role="button" aria-label="Make it react"><img src="assets/mochi.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Mochi</h3><p class="sub">the mochi bunny</p><p class="desc">Perfectly round, a strawberry on its head.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="theo" tabindex="0" role="button" aria-label="Make it react"><img src="assets/theo.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Théo</h3><p class="sub">the teapot snail</p><p class="desc">Its shell is a little teapot that never stops steaming.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="bocal" tabindex="0" role="button" aria-label="Make it react"><img src="assets/bocal.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Bocal</h3><p class="sub">the walking fish</p><p class="desc">Put boots on its fishbowl and went for a walk.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="carton" tabindex="0" role="button" aria-label="Make it react"><img src="assets/carton.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Carton</h3><p class="sub">the boxed cat</p><p class="desc">Never, ever leaves its cardboard box.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="piquant" tabindex="0" role="button" aria-label="Make it react"><img src="assets/piquant.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Piquant</h3><p class="sub">the baby cactus</p><p class="desc">Hops around in its pot, a flower on its head.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="boulon" tabindex="0" role="button" aria-label="Make it react"><img src="assets/boulon.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Boulon</h3><p class="sub">the wind-up robot</p><p class="desc">A key in its back and a heart on its chest.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="tartine" tabindex="0" role="button" aria-label="Make it react"><img src="assets/tartine.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Tartine</h3><p class="sub">the toast turtle</p><p class="desc">Carries a slice of buttered toast for a shell.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="chandelle" tabindex="0" role="button" aria-label="Make it react"><img src="assets/chandelle.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Chandelle</h3><p class="sub">the little candle</p><p class="desc">Its flame flickers as it runs.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="ampoule" tabindex="0" role="button" aria-label="Make it react"><img src="assets/ampoule.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Ampoule</h3><p class="sub">the little light bulb</p><p class="desc">Lights up with every idea.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="cornet" tabindex="0" role="button" aria-label="Make it react"><img src="assets/cornet.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Cornet</h3><p class="sub">the ice cream cone</p><p class="desc">Strawberry, sprinkles and a cherry on top.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="surprise" tabindex="0" role="button" aria-label="Make it react"><img src="assets/surprise.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Surprise</h3><p class="sub">the curious gift</p><p class="desc">Two glowing eyes peek out from under the lid.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="chaudron" tabindex="0" role="button" aria-label="Make it react"><img src="assets/chaudron.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Chaudron</h3><p class="sub">the little cauldron</p><p class="desc">A green potion that never stops bubbling.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="arrosoir" tabindex="0" role="button" aria-label="Make it react"><img src="assets/arrosoir.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Arrosoir</h3><p class="sub">the watering can</p><p class="desc">A little sprout grows out of its head.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="plot" tabindex="0" role="button" aria-label="Make it react"><img src="assets/plot.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Plot</h3><p class="sub">the traffic cone</p><p class="desc">Always standing right where it shouldn't.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="cadenas" tabindex="0" role="button" aria-label="Make it react"><img src="assets/cadenas.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Cadenas</h3><p class="sub">the little padlock</p><p class="desc">Its key hangs from its back.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="flacon" tabindex="0" role="button" aria-label="Make it react"><img src="assets/flacon.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Flacon</h3><p class="sub">the little potion</p><p class="desc">A pink potion that fizzes.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="sablier" tabindex="0" role="button" aria-label="Make it react"><img src="assets/sablier.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Sablier</h3><p class="sub">the hourglass</p><p class="desc">Flips over when its sand runs out.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="toupie" tabindex="0" role="button" aria-label="Make it react"><img src="assets/toupie.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Toupie</h3><p class="sub">the spinning top</p><p class="desc">Only stays up while it spins.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="gouache" tabindex="0" role="button" aria-label="Make it react"><img src="assets/gouache.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Gouache</h3><p class="sub">the paint pot</p><p class="desc">Overflowing, with a brush stuck inside.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="chiclette" tabindex="0" role="button" aria-label="Make it react"><img src="assets/chiclette.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Chiclette</h3><p class="sub">the gumball machine</p><p class="desc">One gumball per click.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="chaussette" tabindex="0" role="button" aria-label="Make it react"><img src="assets/chaussette.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Chaussette</h3><p class="sub">the lonely sock</p><p class="desc">Still looking for its twin.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="pate" tabindex="0" role="button" aria-label="Make it react"><img src="assets/pate.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Pâté</h3><p class="sub">the sand bucket</p><p class="desc">Its little shovel stuck in the sand.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="grillon" tabindex="0" role="button" aria-label="Make it react"><img src="assets/grillon.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Grillon</h3><p class="sub">the toaster</p><p class="desc">Its toasts pop up when it's happy.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet fly" data-model="lampion" tabindex="0" role="button" aria-label="Make it react"><img src="assets/lampion.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Lampion</h3><p class="sub">the paper lantern</p><p class="desc">Floats and lights up the night.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="moufle" tabindex="0" role="button" aria-label="Make it react"><img src="assets/moufle.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Moufle</h3><p class="sub">the mitten</p><p class="desc">Warm and knitted, a pompom at the wrist.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="pelote" tabindex="0" role="button" aria-label="Make it react"><img src="assets/pelote.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Pelote</h3><p class="sub">the ball of yarn</p><p class="desc">Knitting needles stuck in its back.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="crayon" tabindex="0" role="button" aria-label="Make it react"><img src="assets/crayon.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Crayon</h3><p class="sub">the coloured pencil</p><p class="desc">Scribbles everywhere it goes.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="mouillette" tabindex="0" role="button" aria-label="Make it react"><img src="assets/mouillette.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Mouillette</h3><p class="sub">the boiled egg</p><p class="desc">A toast soldier dipped in the yolk.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="clochette" tabindex="0" role="button" aria-label="Make it react"><img src="assets/clochette.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Clochette</h3><p class="sub">the little bell</p><p class="desc">Rings with every step it takes.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="miel" tabindex="0" role="button" aria-label="Make it react"><img src="assets/miel.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Miel</h3><p class="sub">the honey pot</p><p class="desc">Dripping everywhere, a dipper stuck inside.</p><button class="buy" data-p="3">Add · 3€</button></article><article class="card"><div class="critter pet idle" data-model="benne" tabindex="0" role="button" aria-label="Make it react"><img src="assets/benne.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Benne</h3><p class="sub">the little bin</p><p class="desc">A banana peel sticks out of the lid.</p><button class="buy" data-p="3">Add · 3€</button></article></div></section>
+
+<section id="dragons"><h2>Dragons that grow up.</h2>
+<p class="lead">Every young dragon has an adult form to unlock. The adults stand about as tall as a player. Each dragon comes with both forms.</p>
+<div class="drows"><div class="drow"><div class="dyoung"><div class="dstage"><div class="critter baby idle" data-model="piment" tabindex="0" role="button" aria-label="Make it react"><img src="assets/piment.png" alt="" draggable="false"><span class="shadow"></span></div></div><h3>Piment</h3><p class="sub">the fire whelp</p></div><div class="arrow">⟶</div><div class="dadult"><div class="critter adult idle" data-model="brasier" tabindex="0" role="button" aria-label="Make it react"><img src="assets/brasier.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Brasier</h3><p class="sub">lord of embers</p><p class="desc">Dark scales veined with lava, rock armour, a spiked mace tail.</p><button class="buy" data-p="8">Add · 8€</button></div></div><div class="drow"><div class="dyoung"><div class="dstage"><div class="critter baby fly" data-model="givre" tabindex="0" role="button" aria-label="Make it react"><img src="assets/givre.png" alt="" draggable="false"><span class="shadow"></span></div></div><h3>Givre</h3><p class="sub">the ice serpent</p></div><div class="arrow">⟶</div><div class="dadult"><div class="critter adult fly" data-model="blizzard" tabindex="0" role="button" aria-label="Make it react"><img src="assets/blizzard.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Blizzard</h3><p class="sub">the storm dragon</p><p class="desc">A crown of crystals and shards of ice circling its body.</p><button class="buy" data-p="8">Add · 8€</button></div></div><div class="drow"><div class="dyoung"><div class="dstage"><div class="critter baby idle" data-model="mousse" tabindex="0" role="button" aria-label="Make it react"><img src="assets/mousse.png" alt="" draggable="false"><span class="shadow"></span></div></div><h3>Mousse</h3><p class="sub">the forest whelp</p></div><div class="arrow">⟶</div><div class="dadult"><div class="critter adult idle" data-model="canopee" tabindex="0" role="button" aria-label="Make it react"><img src="assets/canopee.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Canopée</h3><p class="sub">the forest dragon</p><p class="desc">Lean and built for flight, carried by two great leaf wings.</p><button class="buy" data-p="8">Add · 8€</button></div></div><div class="drow"><div class="dyoung"><div class="dstage"><div class="critter baby fly" data-model="coco" tabindex="0" role="button" aria-label="Make it react"><img src="assets/coco.png" alt="" draggable="false"><span class="shadow"></span></div></div><h3>Coco</h3><p class="sub">the hatchling</p></div><div class="arrow">⟶</div><div class="dadult"><div class="critter adult idle" data-model="zenith" tabindex="0" role="button" aria-label="Make it react"><img src="assets/zenith.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Zénith</h3><p class="sub">the sun dragon</p><p class="desc">Out of its shell for good, crowned with rays of light.</p><button class="buy" data-p="8">Add · 8€</button></div></div><div class="drow"><div class="dyoung"><div class="dstage"><div class="critter baby fly" data-model="myrtille" tabindex="0" role="button" aria-label="Make it react"><img src="assets/myrtille_b.png" alt="" draggable="false"><span class="shadow"></span></div></div><h3>Myrtille</h3><p class="sub">the baby dragon</p></div><div class="arrow">⟶</div><div class="dadult"><div class="critter adult fly" data-model="crepuscule" tabindex="0" role="button" aria-label="Make it react"><img src="assets/crepuscule.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Crépuscule</h3><p class="sub">the dusk dragon</p><p class="desc">Night-sky wings scattered with stars and a crescent moon on its tail.</p><button class="buy" data-p="8">Add · 8€</button></div></div><div class="drow"><div class="dyoung"><div class="dstage"><div class="critter baby fly" data-model="nouille" tabindex="0" role="button" aria-label="Make it react"><img src="assets/nouille_b.png" alt="" draggable="false"><span class="shadow"></span></div></div><h3>Nouille</h3><p class="sub">the noodle dragon</p></div><div class="arrow">⟶</div><div class="dadult"><div class="critter adult fly" data-model="maree" tabindex="0" role="button" aria-label="Make it react"><img src="assets/maree.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Marée</h3><p class="sub">the tide dragon</p><p class="desc">A long jade serpent with a coral sail, forever chasing its pearl.</p><button class="buy" data-p="8">Add · 8€</button></div></div><div class="drow"><div class="dyoung"><div class="dstage"><div class="critter baby still" tabindex="0" role="button" aria-label="Make it react"><img src="assets/sable.png" alt="" draggable="false"><span class="shadow"></span></div></div><h3>Sablé</h3><p class="sub">the gingerbread whelp</p></div><div class="arrow">⟶</div><div class="dadult"><div class="critter adult still" tabindex="0" role="button" aria-label="Make it react"><img src="assets/paindepices.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Pain d'Épices</h3><p class="sub">the gingerbread dragon</p><p class="desc">Icing drips, candy-cane horns and a peppermint on its tail.</p><span class="soon">Coming soon</span></div></div></div></section>
+
+<section id="bosses"><h2>Bosses.</h2>
+<p class="lead">Large mobs to fight, with their own attack animations and skills. Tap one to trigger an attack.</p>
+<div class="bosses">
+<div><div class="critter boss idle" data-model="veilleur" tabindex="0" role="button" aria-label="Make it react"><img src="assets/veilleur.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Le Veilleur d'Écorce</h3><p class="sub">the Bark Warden</p><p class="desc">An ancient tree golem with a glowing core. Slams the ground and calls up roots.</p><button class="buy" data-p="12">Add · 12€</button></div>
+<div><div class="critter boss idle" data-model="roi_meteore" tabindex="0" role="button" aria-label="Make it react"><img src="assets/roi.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Le Roi Météore</h3><p class="sub">the Meteor King</p><p class="desc">A black-and-gold colossus crowned with amethyst. Summons a rain of meteors.</p><button class="buy" data-p="12">Add · 12€</button></div>
+</div></section>
+
+<div class="service"><div><h3>Need it installed?</h3><p>I can set everything up on your server for you: install, spawn settings, Bedrock (Geyser) support, and fixes if something breaks.</p></div><a class="btn ghost" href="#contact">Ask on Discord</a></div>
+
+<section id="faq"><h2>Questions.</h2>
+<div class="faq">
+<details open><summary>What do I need on my server?</summary><p>ModelEngine and MythicMobs are required. MCPets is needed for companions. ItemsAdder is optional (3D head icons for menus and shops).</p></details>
+<details><summary>Does it work for Bedrock players?</summary><p>Yes. Every creature comes with the Geyser files, so Bedrock players see the same models and animations.</p></details>
+<details><summary>How do I get the files?</summary><p>Add what you want to the cart, then send your order to Banque on Discord. Once it's paid, you receive a download with one folder per plugin. Copy them into plugins/ and reload.</p></details>
+<details><summary>Can I edit or resell them?</summary><p>You can use them on your own server(s) and tweak the configs. Reselling or sharing the files is not allowed.</p></details>
+<details><summary>Why are the names in French?</summary><p>They were made for a French server. You can rename them in the MCPets and MythicMobs configs.</p></details>
+</div></section>
+
+<footer id="contact"><div class="flogo"><span class="wm3">banque<span>.</span></span></div>Every creature here is an original design.<br>Questions or custom requests? Message <strong>Banque</strong> on Discord.</footer>
+
+<div class="drawer" id="drawer"><h4>Your cart <button class="x" id="close">×</button></h4><ul id="items"></ul>
+<div class="tot"><span>Total</span><span id="total">0€</span></div><div class="tip" id="tip"></div>
+<button class="btn main" id="checkout">Order on Discord</button>
+<div id="orderbox" hidden><p class="ordhelp">Send this message to <strong>Banque</strong> on Discord to pay and receive your files:</p><textarea id="ordertxt" readonly rows="5" aria-label="Your order"></textarea></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+var cart=[],B={companions:['All 38 companions',45],dragons:['All 6 dragons',35],bosses:['Both bosses',20],all:['Everything (52 creatures)',90]};
+var $=function(id){return document.getElementById(id)};
+function render(){
+  $('count').textContent=cart.length;
+  $('items').innerHTML=cart.map(function(c,i){return '<li><span>'+c[0]+'</span><span>'+c[1]+'€ <button class="x" data-i="'+i+'" style="font-size:12px">×</button></span></li>'}).join('')||'<li><span>Empty</span><span></span></li>';
+  var tot=cart.reduce(function(s,c){return s+c[1]},0);$('total').textContent=tot+'€';
+  $('tip').textContent=tot>=90&&!cart.some(function(c){return c[0].indexOf('Everything')===0})?'Tip: the full pack is 90€ for everything!':'';
+}
+function add(name,p,btn){cart.push([name,p]);render();$('drawer').classList.add('open');if(btn){btn.classList.add('in');btn.textContent='Added ✓'}}
+document.querySelectorAll('.buy').forEach(function(b){b.addEventListener('click',function(){
+  var card=b.closest('.card,.dadult,.bosses > div');add(card.querySelector('h3').textContent,+b.dataset.p,b)})});
+document.querySelectorAll('[data-bundle]').forEach(function(b){b.addEventListener('click',function(){var x=B[b.dataset.bundle];add(x[0],x[1])})});
+$('cartbtn').onclick=function(){$('drawer').classList.toggle('open')};$('close').onclick=function(){$('drawer').classList.remove('open')};
+$('items').addEventListener('click',function(e){if(e.target.dataset.i!=null){cart.splice(+e.target.dataset.i,1);render()}});
+function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3200)}
+$('checkout').onclick=function(){
+  if(!cart.length){toast('Your cart is empty');return}
+  var tot=cart.reduce(function(s,c){return s+c[1]},0);
+  var txt='Hi Banque! I would like to order:\n'+cart.map(function(c){return '- '+c[0]+' ('+c[1]+'€)'}).join('\n')+'\nTotal: '+tot+'€';
+  $('ordertxt').value=txt;$('orderbox').hidden=false;
+  try{navigator.clipboard.writeText(txt).then(function(){toast('Order copied. Paste it to Banque on Discord')},function(){toast('Copy the order below and send it to Banque on Discord')})}catch(e){toast('Copy the order below and send it to Banque on Discord')}
+};
+render();
+
+document.querySelectorAll('.switch button').forEach(function(b){b.onclick=function(){document.body.className='m'+b.dataset.m;document.querySelectorAll('.switch button').forEach(function(x){x.classList.toggle('on',x===b)})}});
+var nav=document.querySelector('nav');addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>20)},{passive:true});
+var cb=$('cartbtn');var _r=render;render=function(){_r();cb.classList.add('bump');setTimeout(function(){cb.classList.remove('bump')},300)};
+// reveal
+var groups=[].slice.call(document.querySelectorAll('section h2,section .lead,.plan,.card,.drow,.bosses>div,details,.service'));
+var row={};groups.forEach(function(el){el.classList.add('rv');var p=el.parentNode;row[p]=(row[p]||0);var idx=[].indexOf.call(p.children,el);el.style.setProperty('--i',(idx%4))});
+var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+groups.forEach(function(el){ro.observe(el)});
+// glow colour from each creature image
+function glow(img,host){function go(){try{var c=document.createElement('canvas');c.width=c.height=24;var x=c.getContext('2d');x.drawImage(img,0,0,24,24);var d=x.getImageData(0,0,24,24).data,r=0,g=0,b=0,n=0;
+ for(var i=0;i<d.length;i+=4){if(d[i+3]>200){var mx=Math.max(d[i],d[i+1],d[i+2]),mn=Math.min(d[i],d[i+1],d[i+2]);var w=(mx-mn)/255+.05;r+=d[i]*w;g+=d[i+1]*w;b+=d[i+2]*w;n+=w}}
+ if(n)host.style.setProperty('--glow','rgba('+(r/n|0)+','+(g/n|0)+','+(b/n|0)+',.42)')}catch(e){}}
+ if(img.complete)go();else img.addEventListener('load',go)}
+document.querySelectorAll('.card').forEach(function(c){var i=c.querySelector('.critter img');if(i)glow(i,c)});
+document.querySelectorAll('.drow').forEach(function(c){var i=c.querySelector('.dadult .critter img');if(i)glow(i,c)});
+document.querySelectorAll('.bosses>div').forEach(function(c){var i=c.querySelector('.critter img');if(i)glow(i,c)});
+
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="models.js"></script>
+<script src="viewer.js"></script>
+</body></html>
