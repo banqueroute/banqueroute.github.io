@@ -197,11 +197,16 @@ footer strong{color:var(--ink)}
 .xcard{border-color:rgba(255,140,140,.14)}
 .xcard:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 15% 8%,rgba(255,255,255,.07) 0 2px,transparent 3px),radial-gradient(circle at 82% 14%,rgba(255,255,255,.06) 0 2px,transparent 3px),radial-gradient(circle at 70% 30%,rgba(255,255,255,.05) 0 1.5px,transparent 2.5px)}
 .xplan{border-color:rgba(255,140,140,.28);background:linear-gradient(180deg,rgba(160,40,60,.22),rgba(30,60,45,.18))}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+@media(max-width:700px){.sgrid{grid-template-columns:1fr}}
+.sstage{width:100%;max-width:260px;aspect-ratio:1;margin:0 auto;position:relative;z-index:1}
+.sstage img{width:100%;height:100%;display:block;object-fit:contain;image-rendering:pixelated}
+.scard:before{width:220px;height:220px;top:40px}
 code{font-family:ui-monospace,Menlo,monospace;color:var(--ink);font-size:.95em}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style></head><body><div class="aurora"><i></i><i></i><i></i></div>
 <nav><div class="in"><a class="logo" href="#top" aria-label="banque. home"><span class="wm3">banque<span>.</span></span></a>
-<div class="links"><a href="#pricing">Pricing</a><a href="#christmas">Christmas</a><a href="#companions">Companions</a><a href="#dragons">Dragons</a><a href="#bosses">Bosses</a><a href="#faq">FAQ</a></div>
+<div class="links"><a href="#pricing">Pricing</a><a href="#christmas">Christmas</a><a href="#companions">Companions</a><a href="#dragons">Dragons</a><a href="#bosses">Bosses</a><a href="#decor">Decor</a><a href="#faq">FAQ</a></div>
 <button class="cartbtn" id="cartbtn">Cart <b id="count">0</b></button></div></nav>
 <div id="top"></div>
 <header class="heroB">
@@ -243,6 +248,16 @@ code{font-family:ui-monospace,Menlo,monospace;color:var(--ink);font-size:.95em}
 <div><div class="critter boss idle" data-model="roi_meteore" tabindex="0" role="button" aria-label="Make it react"><img src="assets/roi.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Le Roi Météore</h3><p class="sub">the Meteor King</p><p class="desc">A black-and-gold colossus crowned with amethyst. Summons a rain of meteors.</p><button class="buy" data-p="12">Add · 12€</button></div>
 </div></section>
 
+<section id="decor"><h2>Farm decor.</h2>
+<p class="lead">Animated sprinklers for your farms. The head spins and water sprays on both sides. Decorative only: they don't water crops.</p>
+<div class="xcta"><button class="btn main" data-bundle="sprinklers">All 3 · 20€ <span class="old">24€</span></button></div>
+<div class="sgrid">
+<article class="card scard"><div class="sstage"><img src="assets/arroseur_bois.webp" alt="Wooden sprinkler, animated" loading="lazy"></div><h3>Wooden sprinkler</h3><p class="sub">oak and iron, copper nozzles</p><button class="buy" data-p="6">Add · 6€</button></article>
+<article class="card scard"><div class="sstage"><img src="assets/arroseur_fer.webp" alt="Iron sprinkler, animated" loading="lazy"></div><h3>Iron sprinkler</h3><p class="sub">dark wood banded with steel</p><button class="buy" data-p="8">Add · 8€</button></article>
+<article class="card scard"><div class="sstage"><img src="assets/arroseur_or.webp" alt="Golden sprinkler, animated" loading="lazy"></div><h3>Golden sprinkler</h3><p class="sub">gold bands, two buckets and a flag</p><button class="buy" data-p="10">Add · 10€</button></article>
+</div>
+<p class="hint" style="margin-top:18px">ItemsAdder furniture · place on any solid block · max 4 per chunk</p></section>
+
 <div class="service"><div><h3>Need it installed?</h3><p>I can set everything up on your server for you: install, spawn settings, Bedrock (Geyser) support, and fixes if something breaks.</p></div><a class="btn ghost" href="#contact">Ask on Discord</a></div>
 
 <section id="faq"><h2>Questions.</h2>
@@ -264,7 +279,7 @@ code{font-family:ui-monospace,Menlo,monospace;color:var(--ink);font-size:.95em}
 
 <script>
 (function(){
-var cart=[],B={companions:['All 38 companions',45],christmas:['Christmas collection (10)',35],dragons:['All 7 dragons',40],bosses:['Both bosses',20],all:['Everything (57 creatures)',99]};
+var cart=[],B={companions:['All 38 companions',45],christmas:['Christmas collection (10)',35],sprinklers:['Sprinklers (3)',20],dragons:['All 7 dragons',40],bosses:['Both bosses',20],all:['Everything (57 creatures)',99]};
 var $=function(id){return document.getElementById(id)};
 function render(){
   $('count').textContent=cart.length;
