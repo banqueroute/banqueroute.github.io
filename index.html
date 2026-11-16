@@ -217,6 +217,51 @@ a.buy{text-decoration:none;display:inline-block}
 .cgrid .sstage img{height:auto;width:auto;max-width:100%;max-height:100%;image-rendering:auto}
 .cgrid .scard{padding-top:26px}
 .cgrid .scard .desc{margin-top:8px}
+.fsoon{margin-top:60px;text-align:center}
+.stag{color:#ffe9c4;background:rgba(230,170,70,.16);border-color:rgba(255,200,120,.3)}
+.soonh{font-size:30px;margin:10px 0 6px}
+.cropgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1100px;margin:28px auto 0}
+.crop{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);border-radius:18px;padding:16px 10px 14px}
+.crop img{width:100%;height:120px;object-fit:contain;object-position:bottom;display:block}
+.crop h4{margin:10px 0 6px;font-size:15px}
+.ctags{margin:0;display:flex;gap:5px;justify-content:center;flex-wrap:wrap;min-height:20px}
+.ct{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:99px;border:1px solid}
+.ct.tall{color:#9cc4f0;border-color:rgba(120,170,230,.5);background:rgba(120,170,230,.1)}
+.ct.regrow{color:#9ce09c;border-color:rgba(120,200,120,.5);background:rgba(120,200,120,.1)}
+.ct.rare{color:#f0c870;border-color:rgba(230,180,80,.5);background:rgba(230,180,80,.1)}
+@media(max-width:900px){.cropgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.cropgrid{grid-template-columns:repeat(2,1fr)}}
+#farm{position:relative}
+.fhero{position:relative;max-width:1150px;margin:34px auto 6px;padding:10px 0 0}
+.fhero:before{content:"";position:absolute;inset:10% 6% 0;background:radial-gradient(60% 70% at 50% 70%,rgba(120,200,90,.22),transparent 70%);filter:blur(10px);z-index:-1}
+.fhero img{width:100%;height:auto;display:block;image-rendering:auto}
+.fhero:after{content:"";display:block;height:1px;margin:0 8%;background:linear-gradient(90deg,transparent,rgba(170,230,140,.35),transparent)}
+.fchips{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:26px auto 34px;padding:0;max-width:900px}
+.fchips li{font-size:13px;color:#cfc6dd;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);border-radius:99px;padding:8px 14px}
+.fchips b{color:#c8f0a8;font-weight:800;margin-right:3px}
+.fgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1150px;margin:0 auto}
+.fc{position:relative;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border-radius:20px;padding:14px 12px 12px;text-align:center;overflow:hidden;transition:transform .25s ease,border-color .25s ease}
+.fc:hover{transform:translateY(-3px);border-color:rgba(170,230,140,.35)}
+.fc:before{content:"";position:absolute;left:15%;right:15%;top:8%;height:55%;background:radial-gradient(closest-side,rgba(140,210,100,.14),transparent);pointer-events:none}
+.fcs{height:170px;display:flex;align-items:flex-end;justify-content:center}
+.fcs img{max-height:100%;max-width:100%;width:auto;height:auto;image-rendering:auto;position:relative}
+.fc h4{margin:10px 0 4px;font-size:16px}
+.fch{margin:0 0 7px;font-size:12px;color:#b6aec4;display:flex;align-items:center;justify-content:center;gap:6px}
+.fch img{width:20px;height:20px;image-rendering:pixelated}
+.fcg{margin-top:10px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.08);height:52px;display:flex;align-items:flex-end;justify-content:center}
+.fcg img{max-height:100%;max-width:100%;image-rendering:auto;opacity:.92}
+.fbag{grid-column:span 2;display:flex;align-items:center;gap:16px;text-align:left;padding:16px 22px;border-color:rgba(200,160,100,.3);background:linear-gradient(120deg,rgba(150,100,50,.18),rgba(255,255,255,.02))}
+.fbag .fcs{height:200px;flex:0 0 42%}
+.fbag:before{background:radial-gradient(closest-side,rgba(220,160,90,.16),transparent)}
+.fbag h4{font-size:20px;margin:8px 0 6px}
+.fbd{margin:0;font-size:13px;color:#cfc6dd;line-height:1.5}
+.fbt{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1a1208;background:linear-gradient(180deg,#d6f5b0,#8fd06a);border-radius:99px;padding:4px 9px}
+.fcta{max-width:760px;margin:34px auto 0;text-align:center}
+.fnow{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px;border-radius:22px;border:1px solid rgba(170,230,140,.3);background:linear-gradient(120deg,rgba(90,170,70,.14),rgba(255,255,255,.02))}
+.fnow p{margin:0;color:#d8d0e6}
+.fask{margin:18px 0 0;color:#a99fba;font-size:14px}.fask a{color:#c8f0a8}
+@media(max-width:1000px){.fgrid{grid-template-columns:repeat(3,1fr)}.fbag{grid-column:span 2}}
+@media(max-width:620px){.fgrid{grid-template-columns:repeat(2,1fr)}.fgrid .fc:nth-child(13){grid-column:span 2}.fhero{margin-left:-14px;margin-right:-14px}.fbag{grid-column:span 2;flex-direction:column;text-align:center}.fbag .fcs{flex:none;width:100%;height:170px}.fcs{height:140px}.fchips li{font-size:12px;padding:6px 11px}}
 .ctag{color:#cfe9ff;background:rgba(90,160,230,.16);border-color:rgba(130,190,255,.3)}
 .cgroup{text-align:center;font-size:15px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin:34px 0 14px}
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1000px;margin:0 auto}
@@ -284,13 +329,14 @@ a.btn{justify-content:center;text-align:center;text-decoration:none}
 <div><div class="critter boss idle" data-model="roi_meteore" tabindex="0" role="button" aria-label="Make it react"><img src="assets/roi.png" alt="" draggable="false"><span class="shadow"></span></div><h3>Le Roi Météore</h3><p class="sub">the Meteor King</p><p class="desc">A black-and-gold colossus crowned with amethyst. Summons a rain of meteors.</p><button class="buy" data-p="12">Add · 12€</button></div>
 </div></section>
 
-<section id="farm"><p class="xtag htag">New</p><h2>Farm.</h2>
-<p class="lead">A hemp crop for CustomCrops and a 3D fertilizer bag to make it grow faster. ItemsAdder + CustomCrops.</p>
-<div class="xcta"><a class="btn main" href="https://payhip.com/b/hc3zj">Hemp &amp; fertilizer pack · 15€</a></div>
-<div class="cgrid">
-<article class="card scard cwide"><div class="sstage"><img src="assets/chanvre.webp" alt="Hemp crop, 4 growth stages, rotating" loading="lazy"></div><h3>Hemp crop</h3><p class="sub">4 growth stages, the last two are 2 blocks tall</p><p class="desc">Seeds, fiber and 3 quality levels included.</p></article>
-<article class="card scard"><div class="sstage"><img src="assets/engrais.webp" alt="Fertilizer bag, rotating" loading="lazy"></div><h3>Fertilizer bag</h3><p class="sub">3D item</p><p class="desc">Right-click a pot: +1 or +2 growth points for 14 cycles.</p></article>
-</div></section>
+<section id="farm"><p class="xtag htag">Final pack · coming soon</p><h2>The farm pack.</h2>
+<p class="lead">13 crops for CustomCrops, made from scratch. Four growth stages, harvests in 1 to 3 stars, and fruits that pop out in 3D when you walk around them.</p>
+<div class="fhero"><img src="assets/farm_lineup.png" alt="All 13 crops of the farm pack, fully grown" loading="lazy"></div>
+<ul class="fchips"><li><b>13</b> crops</li><li><b>4</b> growth stages</li><li><b>1–3★</b> harvests</li><li><b>8</b> regrow after harvest</li><li><b>6</b> grow 2 blocks tall</li><li><b>3D</b> fruits</li></ul>
+<div class="fgrid"><article class="fc"><div class="fcs"><img src="assets/farm/hemp.webp" alt="Hemp, fully grown, rotating" loading="lazy"></div><h4>Hemp</h4><p class="fch"><img src="assets/farm/hemp_item.png" alt="" loading="lazy">Hemp fiber</p><p class="ctags"><span class="ct tall">2 blocks</span></p><div class="fcg"><img src="assets/farm/hemp_stages.png" alt="Hemp, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/sunflower.webp" alt="Sunflower, fully grown, rotating" loading="lazy"></div><h4>Sunflower</h4><p class="fch"><img src="assets/farm/sunflower_item.png" alt="" loading="lazy">Sunflower seeds</p><p class="ctags"><span class="ct tall">2 blocks</span></p><div class="fcg"><img src="assets/farm/sunflower_stages.png" alt="Sunflower, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/hop.webp" alt="Hop, fully grown, rotating" loading="lazy"></div><h4>Hop</h4><p class="fch"><img src="assets/farm/hop_item.png" alt="" loading="lazy">Hop cones</p><p class="ctags"><span class="ct tall">2 blocks</span><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/hop_stages.png" alt="Hop, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/tomato.webp" alt="Tomato, fully grown, rotating" loading="lazy"></div><h4>Tomato</h4><p class="fch"><img src="assets/farm/tomato_item.png" alt="" loading="lazy">Tomatoes</p><p class="ctags"><span class="ct tall">2 blocks</span><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/tomato_stages.png" alt="Tomato, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/vine.webp" alt="Grapevine, fully grown, rotating" loading="lazy"></div><h4>Grapevine</h4><p class="fch"><img src="assets/farm/vine_item.png" alt="" loading="lazy">Grapes</p><p class="ctags"><span class="ct tall">2 blocks</span><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/vine_stages.png" alt="Grapevine, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/corn.webp" alt="Corn, fully grown, rotating" loading="lazy"></div><h4>Corn</h4><p class="fch"><img src="assets/farm/corn_item.png" alt="" loading="lazy">Corn</p><p class="ctags"><span class="ct tall">2 blocks</span></p><div class="fcg"><img src="assets/farm/corn_stages.png" alt="Corn, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/strawberry.webp" alt="Strawberry, fully grown, rotating" loading="lazy"></div><h4>Strawberry</h4><p class="fch"><img src="assets/farm/strawberry_item.png" alt="" loading="lazy">Strawberries</p><p class="ctags"><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/strawberry_stages.png" alt="Strawberry, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/pepper.webp" alt="Chili pepper, fully grown, rotating" loading="lazy"></div><h4>Chili pepper</h4><p class="fch"><img src="assets/farm/pepper_item.png" alt="" loading="lazy">Chili peppers</p><p class="ctags"><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/pepper_stages.png" alt="Chili pepper, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/lavender.webp" alt="Lavender, fully grown, rotating" loading="lazy"></div><h4>Lavender</h4><p class="fch"><img src="assets/farm/lavender_item.png" alt="" loading="lazy">Lavender</p><p class="ctags"><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/lavender_stages.png" alt="Lavender, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/blueberry.webp" alt="Blueberry, fully grown, rotating" loading="lazy"></div><h4>Blueberry</h4><p class="fch"><img src="assets/farm/blueberry_item.png" alt="" loading="lazy">Blueberries</p><p class="ctags"><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/blueberry_stages.png" alt="Blueberry, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/coffee.webp" alt="Coffee, fully grown, rotating" loading="lazy"></div><h4>Coffee</h4><p class="fch"><img src="assets/farm/coffee_item.png" alt="" loading="lazy">Coffee cherries</p><p class="ctags"><span class="ct regrow">regrows</span></p><div class="fcg"><img src="assets/farm/coffee_stages.png" alt="Coffee, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/cotton.webp" alt="Cotton, fully grown, rotating" loading="lazy"></div><h4>Cotton</h4><p class="fch"><img src="assets/farm/cotton_item.png" alt="" loading="lazy">Cotton</p><p class="ctags"></p><div class="fcg"><img src="assets/farm/cotton_stages.png" alt="Cotton, 4 growth stages" loading="lazy"></div></article><article class="fc"><div class="fcs"><img src="assets/farm/saffron.webp" alt="Saffron, fully grown, rotating" loading="lazy"></div><h4>Saffron</h4><p class="fch"><img src="assets/farm/saffron_item.png" alt="" loading="lazy">Saffron</p><p class="ctags"><span class="ct rare">rare</span></p><div class="fcg"><img src="assets/farm/saffron_stages.png" alt="Saffron, 4 growth stages" loading="lazy"></div></article><article class="fc fbag"><div class="fcs"><img src="assets/engrais.webp" alt="Fertilizer bag, rotating" loading="lazy"></div><div><span class="fbt">Included</span><h4>Fertilizer bag</h4><p class="fbd">A 3D item that works on every crop of the pack. Right-click a pot: +1 or +2 growth points for 14 cycles.</p></div></article></div>
+<div class="fcta"><div class="fnow"><span class="fbt">Available now</span><p>Can't wait? Start with the hemp crop and the fertilizer bag.</p><a class="btn main" href="https://payhip.com/b/hc3zj">Hemp &amp; fertilizer pack · 15€</a></div>
+<p class="fask">The full pack is almost ready. Want it first? <a href="#contact">Message me on Discord</a>.</p></div>
+</section>
 
 <section id="custom"><p class="xtag ctag">Made to order</p><h2>Custom orders.</h2>
 <p class="lead">Things I made for other servers. They are not for sale, but I can make something like this for yours: message me on Discord with your idea.</p>
@@ -367,6 +413,6 @@ document.querySelectorAll('.bosses>div').forEach(function(c){var i=c.querySelect
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="models.js?v=1116a"></script>
-<script src="viewer.js?v=1116a"></script>
+<script src="models.js?v=1116b"></script>
+<script src="viewer.js?v=1116b"></script>
 </body></html>
